@@ -1,4 +1,12 @@
 backend:
-  type: backend
-  prod: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"]
-  dev: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"]
+  type: backend # Service type
+  url_path: /api # Specifies the path prefix for the backend service
+  local_packages: ["node_modules"] #Specifics the local packages needed.
+  dev: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"] # Command to run the service in development environment
+  prod: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"] # Command to run in production environment
+  resources: # Backend resource
+    - name: mongodb # Unique resource name 
+      engine: mongodb # Database Engine 
+      type: database # Specifies the type of resource
+      version: 4.4.1 # Specifies the version of the database
+      url: 'mongodb+srv://infinato:XpFQwqAX8raTnCz2@librarymgmt.rsex8dg.mongodb.net/?retryWrites=true&w=majority&appName=libraryMgmt' # Connection string for MongoDB
