@@ -1,0 +1,4 @@
+backend:
+  type: backend
+  prod: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"]
+  dev: [".", "/opt/venv/bin/activate", "&&", "uvicorn", "main:app", "--port=$PORT", "--host=0.0.0.0", "--reload"]
